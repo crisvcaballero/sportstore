@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu Compra! - SportStore</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>SportStore</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="futbol.html">Fútbol</a>
+                <a href="gym.html">Gimnasio</a>
+                <a href="escalada.html">Escalada</a>
+                <a href="natacion.html">Natación</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="thank-you-page">
+        <div class="thank-you-container">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>¡Gracias por tu Compra!</h1>
+            <p>Tu pedido ha sido procesado correctamente.</p>
+            
+            <div class="order-details">
+                <h2>Detalles del Pedido</h2>
+                <div class="order-number">
+                    <p>Número de Pedido: <span id="order-number"></span></p>
+                    <p>Fecha: <span id="order-date"></span></p>
+                </div>
+                <div class="shipping-info">
+                    <h3>Información de Envío</h3>
+                    <div id="shipping-details">
+                        <!-- Los detalles de envío se cargarán dinámicamente -->
+                    </div>
+                </div>
+                <div class="order-items">
+                    <h3>Productos</h3>
+                    <div id="order-items-list">
+                        <!-- Los items se cargarán dinámicamente -->
+                    </div>
+                </div>
+                <div class="order-summary">
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="thank-you-subtotal">0.00€</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Envío</span>
+                        <span id="thank-you-shipping">5.99€</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span id="thank-you-total">0.00€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h2>Próximos Pasos</h2>
+                <p>Recibirás un email de confirmación con los detalles de tu pedido.</p>
+                <div class="action-buttons">
+                    <a href="../index.html" class="continue-shopping">Continuar Comprando</a>
+                    <a href="#" class="track-order">Seguir Pedido</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>SportStore es tu tienda especializada en material deportivo de alta calidad.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@sportstore.com</p>
+                <p>Teléfono: +34 900 123 456</p>
+                <p>Dirección: Calle Deportiva 123, Madrid</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SportStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Función para formatear la fecha
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Función para renderizar los detalles de envío
+        function renderShippingDetails(shipping) {
+            const shippingDetails = document.getElementById('shipping-details');
+            shippingDetails.innerHTML = `
+                <p><strong>Nombre:</strong> ${shipping.name}</p>
+                <p><strong>Email:</strong> ${shipping.email}</p>
+                <p><strong>Dirección:</strong> ${shipping.address}</p>
+                <p><strong>Ciudad:</strong> ${shipping.city}</p>
+                <p><strong>Código Postal:</strong> ${shipping.postalCode}</p>
+                <p><strong>País:</strong> ${shipping.country}</p>
+                <p><strong>Teléfono:</strong> ${shipping.phone}</p>
+            `;
+        }
+
+        // Función para renderizar los items del pedido
+        function renderOrderItems() {
+            const orderData = JSON.parse(localStorage.getItem('lastOrder'));
+            
+            if (!orderData) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            const orderItemsList = document.getElementById('order-items-list');
+            const { items, orderNumber, date, shipping } = orderData;
+
+            // Mostrar número de pedido y fecha
+            document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('order-date').textContent = formatDate(date);
+
+            // Mostrar detalles de envío
+            renderShippingDetails(shipping);
+
+            // Mostrar items del pedido
+            orderItemsList.innerHTML = items.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p>Cantidad: ${item.quantity}</p>
+                    </div>
+                    <div class="item-price">
+                        ${(item.price * item.quantity).toFixed(2)}€
+                    </div>
+                </div>
+            `).join('');
+
+            updateOrderSummary(items);
+        }
+
+        // Función para actualizar el resumen del pedido
+        function updateOrderSummary(items) {
+            const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 5.99 : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('thank-you-subtotal').textContent = `${subtotal.toFixed(2)}€`;
+            document.getElementById('thank-you-shipping').textContent = `${shipping.toFixed(2)}€`;
+            document.getElementById('thank-you-total').textContent = `${total.toFixed(2)}€`;
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrderItems();
+        });
+    </script>
+</body>
+</html> 

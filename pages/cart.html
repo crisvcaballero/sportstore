@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - SportStore</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>SportStore</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="futbol.html">Fútbol</a>
+                <a href="gym.html">Gimnasio</a>
+                <a href="escalada.html">Escalada</a>
+                <a href="natacion.html">Natación</a>
+                <a href="cart.html" class="cart-icon active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="cart-page">
+        <h2>Tu Carrito de Compras</h2>
+        <div class="cart-container">
+            <div class="cart-items">
+                <div id="cart-items-list">
+                    <!-- Los items del carrito se cargarán dinámicamente -->
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="subtotal">0.00€</span>
+                </div>
+                <div class="summary-item">
+                    <span>Envío</span>
+                    <span id="shipping">5.99€</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total</span>
+                    <span id="total">0.00€</span>
+                </div>
+                <div class="promo-code">
+                    <input type="text" placeholder="Código promocional">
+                    <button>Aplicar</button>
+                </div>
+                <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceder al Pago</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>SportStore es tu tienda especializada en material deportivo de alta calidad.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@sportstore.com</p>
+                <p>Teléfono: +34 900 123 456</p>
+                <p>Dirección: Calle Deportiva 123, Madrid</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SportStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/cart.js"></script>
+    <script>
+        // Función para renderizar los items del carrito
+        function renderCartItems() {
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<p>Tu carrito está vacío</p>';
+                return;
+            }
+
+            cartItemsList.innerHTML = cart.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p class="price">${item.price}€</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" onclick="updateQuantity(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn plus" onclick="updateQuantity(${item.id}, 1)">+</button>
+                    </div>
+                    <button class="remove-item" onclick="removeItem(${item.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            updateCartSummary();
+        }
+
+        // Función para actualizar la cantidad de un item
+        function updateQuantity(productId, change) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeItem(productId);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    renderCartItems();
+                }
+            }
+        }
+
+        // Función para eliminar un item
+        function removeItem(productId) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const newCart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(newCart));
+            renderCartItems();
+        }
+
+        // Función para actualizar el resumen del carrito
+        function updateCartSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 0 ? 5.99 : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)}€`;
+            document.getElementById('shipping').textContent = `${shipping.toFixed(2)}€`;
+            document.getElementById('total').textContent = `${total.toFixed(2)}€`;
+        }
+
+        // Inicializar el carrito cuando la página se carga
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartItems();
+        });
+    </script>
+</body>
+</html> 

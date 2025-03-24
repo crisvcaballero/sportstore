@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto - SportStore</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>SportStore</h1>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="futbol.html">Fútbol</a>
+                <a href="gym.html">Gimnasio</a>
+                <a href="escalada.html">Escalada</a>
+                <a href="natacion.html">Natación</a>
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-detail">
+            <div class="product-images">
+                <div class="main-image">
+                    <img src="../assets/images/producto1.jpg" alt="Balón de Fútbol" id="main-image">
+                </div>
+                <div class="thumbnail-images">
+                    <img src="../assets/images/producto1.jpg" alt="Vista 1" class="thumbnail active">
+                    <img src="../assets/images/producto-relacionado1.jpg" alt="Vista 2" class="thumbnail">
+                    <img src="../assets/images/producto-relacionado2.jpg" alt="Vista 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1>Balón de Fútbol Profesional</h1>
+                <div class="product-meta">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.5/5)</span>
+                    </div>
+                    <span class="price">49.99€</span>
+                </div>
+                <div class="product-description">
+                    <p>Balón de fútbol profesional de alta calidad, perfecto para entrenamientos y partidos. Fabricado con materiales premium para máxima durabilidad y rendimiento.</p>
+                </div>
+                <div class="product-options">
+                    <div class="size-options">
+                        <label>Talla:</label>
+                        <div class="size-buttons">
+                            <button class="size-btn">S</button>
+                            <button class="size-btn active">M</button>
+                            <button class="size-btn">L</button>
+                            <button class="size-btn">XL</button>
+                        </div>
+                    </div>
+                    <div class="quantity-selector">
+                        <label>Cantidad:</label>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                    <button class="buy-now-btn">Comprar Ahora</button>
+                </div>
+                <div class="product-details">
+                    <h3>Detalles del Producto</h3>
+                    <ul>
+                        <li>Material: Cuero sintético de alta calidad</li>
+                        <li>Diámetro: 22cm</li>
+                        <li>Peso: 420g</li>
+                        <li>Garantía: 1 año</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="related-products">
+            <h2>Productos Relacionados</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="../assets/images/producto-relacionado1.jpg" alt="Producto Relacionado 1">
+                    <h3>Balón de Fútbol Training</h3>
+                    <p class="price">39.99€</p>
+                    <a href="product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/images/producto-relacionado2.jpg" alt="Producto Relacionado 2">
+                    <h3>Guantes de Portero</h3>
+                    <p class="price">59.99€</p>
+                    <a href="product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+                <div class="product-card">
+                    <img src="../assets/images/producto-relacionado3.jpg" alt="Producto Relacionado 3">
+                    <h3>Botas de Fútbol</h3>
+                    <p class="price">89.99€</p>
+                    <a href="product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>SportStore es tu tienda especializada en material deportivo de alta calidad.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@sportstore.com</p>
+                <p>Teléfono: +34 900 123 456</p>
+                <p>Dirección: Calle Deportiva 123, Madrid</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SportStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/product-detail.js"></script>
+</body>
+</html> 

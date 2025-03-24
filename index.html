@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportStore - Tu Tienda Deportiva Online</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>SportStore</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="pages/futbol.html">Fútbol</a>
+                <a href="pages/gym.html">Gimnasio</a>
+                <a href="pages/escalada.html">Escalada</a>
+                <a href="pages/natacion.html">Natación</a>
+                <a href="pages/cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Bienvenido a SportStore</h2>
+                <p>Tu destino para todo lo relacionado con el deporte</p>
+                <a href="#categorias" class="cta-button">Explorar Categorías</a>
+            </div>
+        </section>
+
+        <section id="categorias" class="categories">
+            <h2>Nuestras Categorías</h2>
+            <div class="category-grid">
+                <a href="pages/futbol.html" class="category-card">
+                    <img src="assets/images/futbol.jpg" alt="Fútbol">
+                    <h3>Fútbol</h3>
+                    <p>Todo lo que necesitas para el deporte rey</p>
+                </a>
+                <a href="pages/gym.html" class="category-card">
+                    <img src="assets/images/gym.jpg" alt="Gimnasio">
+                    <h3>Gimnasio</h3>
+                    <p>Equipamiento y accesorios para tu entrenamiento</p>
+                </a>
+                <a href="pages/escalada.html" class="category-card">
+                    <img src="assets/images/escalada.jpg" alt="Escalada">
+                    <h3>Escalada</h3>
+                    <p>Material y equipamiento para escalada</p>
+                </a>
+                <a href="pages/natacion.html" class="category-card">
+                    <img src="assets/images/natacion.jpg" alt="Natación">
+                    <h3>Natación</h3>
+                    <p>Todo lo necesario para nadar</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <h2>Productos Destacados</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="assets/images/producto1.jpg" alt="Balón de Fútbol">
+                    <h3>Balón de Fútbol Profesional</h3>
+                    <p class="price">49.99€</p>
+                    <a href="pages/product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/producto2.jpg" alt="Guantes de Escalada">
+                    <h3>Guantes de Escalada Premium</h3>
+                    <p class="price">39.99€</p>
+                    <a href="pages/product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+                <div class="product-card">
+                    <img src="assets/images/producto3.jpg" alt="Gafas de Natación">
+                    <h3>Gafas de Natación Pro</h3>
+                    <p class="price">29.99€</p>
+                    <a href="pages/product-detail.html" class="view-product">Ver Detalles</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Tu tienda de deportes de confianza con los mejores productos y precios.</p>
+                <p class="project-info">Este es un proyecto de aprendizaje y no es una tienda real. No se realizarán compras ni se procesarán pagos.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@sportstore.com</p>
+                <p>Teléfono: +34 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SportStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/cookie-banner.js"></script>
+</body>
+</html> 
